@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import OrderListItem from '../OrderListItem/OrderListItem';
 
 function OrderList() {
 
@@ -45,27 +46,14 @@ function OrderList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {.map()=>
-                    <tr>
-                        <td>
-                            {order.customer_name}
-                        </td>
-                        <td>
-                            {order.time}
-                        </td>
-                        <td>
-                            {order.type}
-                        </td>
-                        <td>
-                            {order.total}
-                        </td>
-                    </tr>
-                }
+                    {orders.map((order, i) => {
+                    <OrderListItem  key={i} order={order}/>
+                    })}
                 </tbody>
 
             </table>
             <p></p>
-            <button onClick={(event) => history.push('/')}>Return to Home</button>
+            <button onClick={() => history.push('/')}>Return to Home</button>
         </>
     )
 }
