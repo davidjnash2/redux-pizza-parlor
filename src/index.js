@@ -8,12 +8,10 @@ import logger from 'redux-logger';
 import {Provider } from 'react-redux';
 
 const cart = (state = [], action) => {
-
-
-
-
+    if(action.type ==="UPDATE_CART") {
+        return [...state, action.payload]
+    }
     return state;
-
 };
 
 const pizzaReducer = (state = [] , action) => {
@@ -30,6 +28,7 @@ const orders = (state = [], action) => {
     }
     return state;
 }
+
 
 
 
