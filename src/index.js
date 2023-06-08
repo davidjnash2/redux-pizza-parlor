@@ -8,13 +8,12 @@ import logger from 'redux-logger';
 import {Provider } from 'react-redux';
 
 const cart = (state = [], action) => {
-
-
-
-
+    if(action.type ==="UPDATE_CART") {
+        return [...state, action.data]
+    }
     return state;
-
 };
+
 
 
 
