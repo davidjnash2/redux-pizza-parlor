@@ -1,21 +1,27 @@
 import axios from 'axios';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 
 function OrderList() {
 
-    const orders = useSelector(store => store.products)
+    const dispatch = useDispatch();
+
+    const orders = useSelector(store => store.orders)
 
     const history = useHistory();
 
-    const fetchOrderList() => {
-
-        axios.get('/api/order',)
-
-
-
+    const fetchOrderList = () => {
+        axios.get('/api/order')
+            .then((response) => )
+            dispatch({
+                type: 'SET_ORDER_LIST',
+                payload: response.data
+            })
+            .catch((error) =>{
+                console.log('error with fetchOrderList', error);
+            })
+            console.log('in fetchOrderList, and response.data is', response.data)
     }
 
     return (
