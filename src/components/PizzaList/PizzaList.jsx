@@ -8,9 +8,11 @@ function PizzaList () {
 
     const dispatch = useDispatch();
 
+    const pizzaReducer = useSelector(store => store.pizzaReducer)
+
 
     const refreshPizza = () => {
-        axios.get({
+        axios({
             method: 'GET',
             url: '/api/pizza'
         })
@@ -28,9 +30,24 @@ function PizzaList () {
 
     }
 
+    useEffect(() => {
+        refreshPizza()
+      }, [])
+
     return (
         <>
-            
+
+            <div>
+                {pizzaReducer.map((pizza) => {
+                    return (
+                        <PizzaListItem 
+                        key={pizza.id}
+                        pizzaReducer={pizzaReducer}
+                        pizza={pizza}
+                        />
+                    )
+                })}
+            </div>
         
         
         
