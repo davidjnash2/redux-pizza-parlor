@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import CartItem from './CartItem/CartItem.jsx';
-
+import PizzaListItem from '../PizzaListItem/PizzaListItem.jsx';
 function Cart() {
 
     const cart = useSelector(store => store.cart);
@@ -16,7 +15,7 @@ function Cart() {
 
     }
 
-
+    console.log(cart);
     return (
 
         <div>
@@ -26,7 +25,7 @@ function Cart() {
 
             <div>
                     {cart.map(pizza => (
-                        <CartItem pizza={pizza} key={pizza.id}/>
+                        <PizzaListItem pizza={pizza} key={pizza.id}/>
                     ))}
             </div>
         </div>
