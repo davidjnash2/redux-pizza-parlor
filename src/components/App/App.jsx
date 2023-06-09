@@ -4,6 +4,7 @@ import './App.css';
 import Cart from '../Cart/cart.jsx';
 import PizzaList from '../PizzaList/PizzaList';
 import {HashRouter as Router, Route, Link } from 'react-router-dom';
+import OrderForm from '../OrderForm/OrderForm';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
         <p>placeholder</p>
       </Route>
       <Route exact path="/checkout">
-        <p>placeholder</p>
+        <OrderForm />
       </Route>
     </Router> 
     </div>
