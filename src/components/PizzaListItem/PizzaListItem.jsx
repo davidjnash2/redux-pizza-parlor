@@ -10,7 +10,10 @@ function PizzaListItem({pizza}) {
         
         dispatch({
             type: 'UPDATE_CART',
-            payload: pizza
+            payload: {
+                ...pizza,
+                quantity: 1,
+            }
         })
     }
 

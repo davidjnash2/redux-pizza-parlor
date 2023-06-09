@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import {useHistory} from 'react-router-dom';
 
 
 
 function  OrderForm () {
-    
+    const [totalDisplay, setTotalDisplay] = useState(0)
     const cart = useSelector(  store => store.cart)
 
     const [orderToAdd, setOrderToAdd] = useState({
@@ -15,18 +16,12 @@ function  OrderForm () {
         zip: '', 
         total: 0,
         type: 'Delivery',
-        pizzas: []
     });
 
+    const history = useHistory();
 
-
-    const addPizzasToOrder = () => {
-        {cart.map((item, i) => {
-            setOrderToAdd({
-                ...orderToAdd,
-                pizzas: [...orderToAdd.pizzas, {id:item.id, quantity:1}]
-            })
-        })}
+    const backButton = () => {
+        history.push('/');    
     }
 
     const handleType =  (event) => {
@@ -65,42 +60,63 @@ function  OrderForm () {
         });
     }
 
-
+    let total = 0;
     const handleTotal = () => {
 
         let sum = 0;
         {cart.map((item, i) => {
             sum += item.price/1
         })}
-        setOrderToAdd({
-            ...orderToAdd,
-            total: sum
-        })
+      total += sum;
+      setTotalDisplay(total);
     }
+
+
+
     const addOrder = (event) => {
         event.preventDefault();
         handleTotal();
 
-
-
-            axios.post('/api/order', orderToAdd)
-            .then(response => {
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        }
+        postOrder();
     
 
+
+        }
+    const postOrder = () => {
+        const pizzaForServer = cart.map(pizza => ({
+            id: pizza.id,
+            quantity: pizza.quantity,
+        }));
+        axios.post('/api/order', {
+            ...orderToAdd,
+            total:total,
+            pizzas: pizzaForServer
+        })
+        .then(response => {
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
+        // const hailMary = () => {
+        //     handleTotal();
+            
+        // } 
+
      useEffect(() => {
-        handleTotal(), addPizzasToOrder()
+        
+       handleTotal();
+        
      }, [])
+
+     
 
     return (
         <>
         <header>
             <h2>Prime Pizza</h2> 
-            <b>Total: {orderToAdd.total}</b>
+            <b>Total: {totalDisplay}</b>
+            <button onClick={backButton}>BACK</button>  
         </header>
 
         <form onSubmit={(event) => addOrder(event)}>
