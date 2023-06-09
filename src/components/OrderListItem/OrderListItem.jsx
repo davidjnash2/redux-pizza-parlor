@@ -2,9 +2,10 @@ import React from 'react';
 
 function OrderListItem({ order }) {
 
+    console.log('order is ', order);
+
     return (
         <>
-            <tr key={order.id}>
                 <td>
                     {order.customer_name}
                 </td>
@@ -17,7 +18,6 @@ function OrderListItem({ order }) {
                 <td>
                     {order.total}
                 </td>
-            </tr>
         </>
     )
 }
