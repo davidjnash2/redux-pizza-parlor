@@ -15,20 +15,20 @@ function OrderList() {
     const fetchOrderList = () => {
         axios.get('/api/order')
             .then((response) => {
-            dispatch({
-                type: 'SET_ORDER_LIST',
-                payload: response.data
-            })})
-            .catch((error) =>{
+                dispatch({
+                    type: 'SET_ORDER_LIST',
+                    payload: response.data
+                })
+            })
+            .catch((error) => {
                 console.log('error with fetchOrderList', error);
             })
-            console.log('in fetchOrderList, and response.data is', response.data)
+        console.log('in fetchOrderList, and response.data is', response.data)
     }
 
     return (
         <>
             <table>
-
                 <thead>
                     <tr>
                         <th>
@@ -47,10 +47,9 @@ function OrderList() {
                 </thead>
                 <tbody>
                     {orders.map((order, i) => {
-                    <OrderListItem  key={i} order={order}/>
+                        <OrderListItem key={i} order={order} />
                     })}
                 </tbody>
-
             </table>
             <p></p>
             <button onClick={() => history.push('/')}>Return to Home</button>
