@@ -6,6 +6,7 @@ import PizzaList from '../PizzaList/PizzaList';
 import {HashRouter as Router, Route, Link } from 'react-router-dom';
 import OrderForm from '../OrderForm/OrderForm';
 
+
 function App() {
 
   return (
@@ -22,7 +23,7 @@ function App() {
           <PizzaList />
       </Route>
       <Route exact path="/admin">
-        <p>placeholder</p>
+        <OrderList />
       </Route>
       <Route exact path="/checkout">
         <OrderForm />
