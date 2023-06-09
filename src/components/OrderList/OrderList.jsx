@@ -14,11 +14,11 @@ function OrderList() {
 
     const fetchOrderList = () => {
         axios.get('/api/order')
-            .then((response) => )
+            .then((response) => {
             dispatch({
                 type: 'SET_ORDER_LIST',
                 payload: response.data
-            })
+            })})
             .catch((error) =>{
                 console.log('error with fetchOrderList', error);
             })
